@@ -61,8 +61,7 @@ public final class MainPresenterImpl implements MainPresenter {
      *
      * @param message The generated hash to display.
      */
-    @Override
-    public void displayHash(@NonNull String message) {
+    private void displayHash(@NonNull String message) {
 
         if (textView != null) {
 
@@ -79,8 +78,7 @@ public final class MainPresenterImpl implements MainPresenter {
      *
      * @param message the message to display.
      */
-    @Override
-    public void displayHashToast(@NonNull String message) {
+    private void displayHashToast(@NonNull String message) {
         Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
     }
 }

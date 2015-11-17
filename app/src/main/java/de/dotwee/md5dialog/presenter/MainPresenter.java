@@ -1,7 +1,5 @@
 package de.dotwee.md5dialog.presenter;
 
-import android.support.annotation.NonNull;
-
 /**
  * Created by Lukas Wolfsteiner on 13.11.2015.
  */
@@ -13,17 +11,4 @@ public interface MainPresenter {
      */
     void onButtonPositive();
 
-    /**
-     * This method displays the generated hash as a message on a {@link android.widget.TextView}.
-     *
-     * @param message The message to display.
-     */
-    void displayHash(@NonNull final String message);
-
-    /**
-     * This method displays the generated hash as a message on a {@link android.widget.Toast}.
-     *
-     * @param message the message to display.
-     */
-    void displayHashToast(@NonNull final String message);
 }
