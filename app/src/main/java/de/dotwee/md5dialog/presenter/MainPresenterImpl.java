@@ -69,7 +69,7 @@ public final class MainPresenterImpl implements MainPresenter {
                 textView.setVisibility(View.VISIBLE);
             }
 
-            textView.setText(message);
+            textView.append(message + "\n");
         }
     }
 
