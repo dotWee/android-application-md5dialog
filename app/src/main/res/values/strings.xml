@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">MD5 Dialog</string>
-    <string name="button_name">Generate &amp; copy</string>
+    <string name="button_name">Generate</string>
     <string name="edittext_hint">Value</string>
-    <string name="hash_wrapper">Md5-Hash of \'&amp;1\': &amp;2</string>
 </resources>

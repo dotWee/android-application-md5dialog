@@ -63,7 +63,7 @@ public class MainActivityTest {
         // click hash button
         onView(withText(R.string.button_name)).perform(click());
 
-        String message = MainModelImpl.getInstance().getMd5Message(activityTestRule.getActivity(), LOG_TAG, MainModelImpl.getInstance().getMd5Hash(LOG_TAG));
+        String message = MainModelImpl.getInstance().getMd5Message(LOG_TAG, MainModelImpl.getInstance().getMd5Hash(LOG_TAG));
 
         // verify textview value existence
         onView(withId(R.id.textViewHash))
@@ -85,7 +85,7 @@ public class MainActivityTest {
         // click hash button
         onView(withText(R.string.button_name)).perform(click());
 
-        String message = MainModelImpl.getInstance().getMd5Message(activityTestRule.getActivity(), LOG_TAG, MainModelImpl.getInstance().getMd5Hash(LOG_TAG));
+        String message = MainModelImpl.getInstance().getMd5Message(LOG_TAG, MainModelImpl.getInstance().getMd5Hash(LOG_TAG));
 
         // verify toast existence
         onView(withText(message))

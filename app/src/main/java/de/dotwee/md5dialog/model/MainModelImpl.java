@@ -1,13 +1,10 @@
 package de.dotwee.md5dialog.model;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
-import de.dotwee.md5dialog.R;
 
 /**
  * Created by Lukas Wolfsteiner on 13.11.2015.
@@ -61,23 +58,14 @@ public final class MainModelImpl implements MainModel {
     /**
      * This method wraps a md5-hash into a message for the user.
      *
-     * @param context Needed to access resources.
      * @param value   The value of the hash.
      * @param hash    The hash to wrap.
      * @return Created message.
      */
     @NonNull
     @Override
-    public String getMd5Message(@NonNull Context context, @NonNull String value, @NonNull String hash) {
+    public String getMd5Message(@NonNull String value, @NonNull String hash) {
 
-        String raw = context.getResources().getString(R.string.hash_wrapper);
-
-        // embed value
-        raw = raw.replace("&1", value);
-
-        // embed hash
-        raw = raw.replace("&2", hash);
-
-        return raw;
+        return value + ":\n" + hash;
     }
 }

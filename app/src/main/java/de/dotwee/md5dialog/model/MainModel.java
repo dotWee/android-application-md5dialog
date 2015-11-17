@@ -1,6 +1,5 @@
 package de.dotwee.md5dialog.model;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 
 /**
@@ -21,11 +20,10 @@ public interface MainModel {
     /**
      * This method wraps a md5-hash into a message for the user.
      *
-     * @param context Needed to access resources.
      * @param value   The value of the hash.
      * @param hash    The hash to wrap.
      * @return Created message.
      */
     @NonNull
-    String getMd5Message(@NonNull Context context, @NonNull String value, @NonNull String hash);
+    String getMd5Message(@NonNull String value, @NonNull String hash);
 }

@@ -1,7 +1,6 @@
 package de.dotwee.md5dialog.presenter;
 
 import android.app.Activity;
-import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -11,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import de.dotwee.md5dialog.R;
+import de.dotwee.md5dialog.model.MainModel;
 import de.dotwee.md5dialog.model.MainModelImpl;
 
 /**
@@ -21,28 +21,44 @@ public final class MainPresenterImpl implements MainPresenter {
     private final ClipboardManager clipboard;
     private final EditText editText;
     private final Activity activity;
+    private final MainModel mainModel;
 
     public MainPresenterImpl(Activity activity) {
         this.clipboard = (ClipboardManager) activity.getSystemService(Context.CLIPBOARD_SERVICE);
         this.editText = (EditText) activity.findViewById(R.id.editText);
+        this.mainModel = MainModelImpl.getInstance();
         this.activity = activity;
     }
 
     /**
-     * This method displays the user's hash as toast.
-     *
-     * @param message Final message to display.
+     * This method reacts on clicks on the positive button.
      */
-    private void displayHashToast(@NonNull final String message) {
-        Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+    @Override
+    public void onButtonPositive() {
+
+        if (editText != null) {
+            String value = editText.getText().toString();
+            String hash = mainModel.getMd5Hash(value);
+
+            if (!hash.isEmpty()) {
+
+                final String message = MainModelImpl.getInstance().getMd5Message(value, hash);
+
+                displayHashToast(message);
+                displayHash(message);
+            }
+
+            editText.setText("");
+        }
     }
 
     /**
-     * This method displays the user's hash to a textView.
+     * This method displays the generated hash as a message on a textview.
      *
-     * @param message Final Md5 hash to display.
+     * @param message The generated hash to display.
      */
-    private void displayHashText(@NonNull final String message) {
+    @Override
+    public void displayHash(@NonNull String message) {
 
         TextView textView = (TextView) activity.findViewById(R.id.textViewHash);
 
@@ -57,35 +73,12 @@ public final class MainPresenterImpl implements MainPresenter {
     }
 
     /**
-     * This method copies the user's hash to its clipboard.
+     * This method displays the generated hash as a message on a {@link Toast}.
      *
-     * @param hash Final Md5 hash
-     */
-    private void copyHashToClipboard(@NonNull final String hash) {
-        clipboard.setPrimaryClip(ClipData.newPlainText("Md5 hash", hash));
-    }
-
-    /**
-     * This method reacts on clicks on the positive button.
+     * @param message the message to display.
      */
     @Override
-    public void onButtonPositive() {
-
-        if (editText != null) {
-            String value = editText.getText().toString();
-            String hash = MainModelImpl.getInstance()
-                    .getMd5Hash(value);
-
-            if (!hash.isEmpty()) {
-                copyHashToClipboard(hash);
-
-                final String message = MainModelImpl.getInstance().getMd5Message(activity, value, hash);
-
-                displayHashToast(message);
-                displayHashText(message);
-            }
-
-            editText.setText("");
-        }
+    public void displayHashToast(@NonNull String message) {
+        Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
     }
 }
