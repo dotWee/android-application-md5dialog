@@ -1,6 +1,7 @@
 # <img src="art/ic_highres.png" height="50px"/> Md5 Dialog
 
 Md5 Dialog is a minimal dialog-only application to get the [_message-digest algorithm v5_](https://en.wikipedia.org/wiki/MD5) (also known as MD5-) hash of a single string.
+A prebuilt debug-apk is available. Check the [prebuilt-debug.apk](/prebuilt-debug.apk).
 
 ## Screenshots
 
