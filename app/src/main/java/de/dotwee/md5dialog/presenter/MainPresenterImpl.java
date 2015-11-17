@@ -1,8 +1,6 @@
 package de.dotwee.md5dialog.presenter;
 
 import android.app.Activity;
-import android.content.ClipboardManager;
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.EditText;
@@ -12,19 +10,25 @@ import android.widget.Toast;
 import de.dotwee.md5dialog.R;
 import de.dotwee.md5dialog.model.MainModel;
 import de.dotwee.md5dialog.model.MainModelImpl;
+import de.dotwee.md5dialog.view.MainActivity;
 
 /**
  * Created by Lukas Wolfsteiner on 13.11.2015.
  */
 public final class MainPresenterImpl implements MainPresenter {
     // --Commented out by Inspection (13.11.2015 15:43):private static final String LOG_TAG = "MainPresenterImpl";
-    private final ClipboardManager clipboard;
     private final EditText editText;
+    private final TextView textView;
     private final Activity activity;
     private final MainModel mainModel;
 
     public MainPresenterImpl(Activity activity) {
-        this.clipboard = (ClipboardManager) activity.getSystemService(Context.CLIPBOARD_SERVICE);
+
+        if (!(activity instanceof MainActivity)) {
+            throw new RuntimeException("Parameter activity is not an instance of MainAcitivty");
+        }
+
+        this.textView = (TextView) activity.findViewById(R.id.textViewHash);
         this.editText = (EditText) activity.findViewById(R.id.editText);
         this.mainModel = MainModelImpl.getInstance();
         this.activity = activity;
@@ -59,8 +63,6 @@ public final class MainPresenterImpl implements MainPresenter {
      */
     @Override
     public void displayHash(@NonNull String message) {
-
-        TextView textView = (TextView) activity.findViewById(R.id.textViewHash);
 
         if (textView != null) {
 
