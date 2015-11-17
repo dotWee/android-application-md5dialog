@@ -6,6 +6,7 @@ Md5 Dialog is a minimal dialog-only application to get the [_message-digest algo
 
 <img src="art/sc_unused.png" height="400px"/>
 &nbsp;<img src="art/sc_used.png" height="400px"/>
+&nbsp;<img src="art/sc_marked.png" height="400px"/>
 
 ## Dependencies
 
