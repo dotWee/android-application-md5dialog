@@ -65,6 +65,11 @@ public final class MainModelImpl implements MainModel {
     @NonNull
     @Override
     public String getMd5Message(@NonNull String value, @NonNull String hash) {
+        final String newline = "\n";
+
+        if (value.isEmpty()) {
+            return "null:" + newline + hash;
+        }
 
         return value + ":\n" + hash;
     }
